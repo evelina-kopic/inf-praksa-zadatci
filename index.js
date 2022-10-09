@@ -1,24 +1,26 @@
 /*
-  Opis:
-     Napišite funkciju pod nazivom sumDigits koja prima jedan parametar koji je broj 
-     i koja kao rezultat vraća zbroj apsolutne vrijednosti svake decimalne znamenke broja.
-     Pretpostavimo da će svi brojevi na ulazu biti cjelobrojne vrijednosti.
-   
-     Primjeri:
-     sumDigits(10);    // Vraća 1
-     sumDigits(99);    // Vraća 18
-     sumDigits(-32);   // Vraća 5
+   Opis:
+     Za zadani skup brojeva, vratite inverz svakom od njih. Svaki pozitivan broj postaje negativan, a negativan postaje pozitivan.
+   Primjeri:
+     invert([1,2,3,4,5]) == [-1,-2,-3,-4,-5]
+     invert([1,-2,3,-4,5]) == [-1,2,-3,4,-5]
+     invert([]) == []
+   Bilješke:
+     Možete pretpostaviti da su sve vrijednosti u nizu cijeli brojevi.
 */
 
 //----------------RJEŠENJE ZADATAKA ------------
 
-function sumDigits(broj) {
-  suma = 0
-  while (broj !== 0) {
-    suma += Math.abs(broj % 10);
-    broj = parseInt(broj/10);
-  }
-  return suma
+function invert(brojevi) {
+  let invert = [];
+  for(let i = 0; i < brojevi.lenght; i++) {
+    if(brojevi[i] > 0) {
+      invert.push(-Math.abs(brojevi[i]));
+    }
+    if (brojevi[i] == 0) {
+      invert.oush(0);
+    }
+  }return invert;
 }
 
 
@@ -28,4 +30,4 @@ function sumDigits(broj) {
 //---------------------------------------------------
 
 // Function Export
-module.exports = sumDigits
+module.exports = invert
