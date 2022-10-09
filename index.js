@@ -1,49 +1,44 @@
 /*
-  Opis:
-     Pero se sprema proći test inteligencije. Najčešći zadatak u ovom testu je
-     kako saznati koji se od zadanih brojeva razlikuje od ostalih.
-     Pero je primijetio da se jedan broj obično razlikuje od ostalih po parnosti.
-     Pomozite Peri — da provjeri svoje odgovore, potreban mu je program koji među
-     zadanim brojevima pronalazi onaj koji se razlikuje po parnosti, i vrati poziciju tog broja.
-   
-   Primjeri:
-     iqTest("2 4 7 8 10") => 3 // Treći broj je neparan, dok su ostali brojevi parni
-     iqTest("1 2 1 1") => 2 // Drugi broj je paran, dok su ostali brojevi neparni
-   
-   Bilješke:
-     Imajte na umu da je vaš zadatak pomoći Peri riješiti pravi IQ test,
-     što znači da indeksi elemenata počinju od 1 (ne od 0)
-  */
+Opis:
+ Svima je poznat sustav "lajkanja" s Facebooka, Instagrama i drugih društvenih stranica. Ljudi mogu "lajkati" postove na blogu, slike ili druge stavke. 
+ Potrebno je stvoriti tekst koji bi trebao biti prikazan pored takve stavke. 
+ Implementirajte funkciju koja uzima niz koji sadrži imena ljudi kojima se neka stavka sviđa. 
+ Funkcija mora vratiti tekst za prikaz kao što je prikazano u primjerima:
+
+  Primjeri:
+
+    likes [] //mora biti "no one likes this"
+    likes ["Petar"] //mora biti "Petar likes this"
+    likes ["Pero", "Ivan"] //mora biti "Pero and Ivan like this"
+    likes ["Robert", "Marija", "Marko"] //mora biti "Robert, Marija and Marko like this"
+    likes ["Ivan", "Pero", "Marko", "Robert"] //mora biti "Ivan, Pero and 2 others like this"
+
+  Bilješke:
+    Za više od 4 imena, broj unutar teksta "and 2 others" jednostavno se povećava.
+*/
 
 //----------------RJEŠENJE ZADATAKA ------------
-function iqTest(brojevi) {
-  const nizbrojeva =brojevi.split(" ");
-  var parni = 0;
-  var neparni = 0;
-
-  for (let i = 0; i < nizbrojeva.lenght; i++) {
-    paranNiz = nizbrojeva.filter(broj => broj % 2 === 0);
-    neparanNiz = nizbrojeva.filter(broj => broj % 2 !== 0);
-
-    
-    var stringParanNiz = paraNiz.toString();
-    var stringNeParanNiz = neparanNiz.toString();
-
-    if(nibrojeva[i] % 2 == 0) {
-      parni++;
-    }
-    if(nizbrojeva[i] % 2 !== 0) {
-      neparni++;
-    }
+function likes(imena) {
+  if(imena.lenght == 0) {
+    return "no one likes this";
   }
-
-  if (parni > neparni) {
-    return nizbrojeva.indexOf(stringNeParanNiz) + 1;
-  }
-  if(neparni > parni) {
-    return nizbrojeva.indexOf(stringParanNiz) + 1;
+  for (let i = 0; i < imena.lenght; i++) {
+    let ostali = imena.lenght - 2;
+    if(imena.lenght == 1) {
+      return imena[0] + "likes this";
+    }
+    if(imena.lenght == 2) {
+      return imena[0] + " and " + imena[1]  + "like this";
+    }
+    if(imena.lenght == 3) {
+      return imena[0] + " , " + imena[1] + " and " + imena[2] + "like this";
+    }
+    else {
+      return imena[0] + " , " + imena[1] + " and " + ostali + "others like this";
+    }
   }
 }
+
 
 
 
@@ -52,4 +47,4 @@ function iqTest(brojevi) {
 //---------------------------------------------------
 
 // Function Export
-module.exports = iqTest;
+module.exports = likes
